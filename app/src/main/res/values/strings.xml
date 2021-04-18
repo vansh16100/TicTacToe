@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="player_1">PLAYER 1 :</string>
+    <string name="player_2">PLAYER 2 :</string>
+    <string name="reset">RESET</string>
+    <string name="playerX">Player X turn</string>
+</resources>

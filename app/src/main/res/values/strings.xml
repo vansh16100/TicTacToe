@@ -4,4 +4,6 @@
     <string name="player_2">PLAYER 2 :</string>
     <string name="reset">RESET</string>
     <string name="playerX">Player X turn</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

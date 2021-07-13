@@ -1,10 +1,9 @@
 package com.example.tictactoe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
@@ -53,42 +52,56 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
         }
         boardState[row][col] = if(turn) 1 else 0
         displaytv.text = if(turn) "Player O turn" else "Player X turn"
-        checkWinner()
+        if(checkWinner()) disableButton()
     }
-    private fun checkWinner() {
+    private fun disableButton() {
+        for(i in 0..2) {
+            for(j in 0..2) {
+                board[i][j].isClickable = false
+            }
+        }
+    }
+    private fun checkWinner() : Boolean {
+        // horizontal rows
         for (i in 0..2) {
            if(boardState[i][0]!=-1&&boardState[i][0]==boardState[i][1] && boardState[i][0]==boardState[i][2]) {
                val winner = if(boardState[i][0]==1) "X" else "O"
                displaytv.text = "Player $winner wins"
                textView2.text = "Now you can press reset button to start a new game"
-               return
+               return true
            }
         }
+//        vertical columns
         for (i in 0..2) {
             if(boardState[0][i]!=-1&&boardState[0][i]==boardState[1][i] && boardState[0][i]==boardState[2][i]) {
                 val winner = if(boardState[0][i]==1) "X" else "O"
                 displaytv.text = "Player $winner wins"
                 textView2.text = "Now you can press reset button to start a new game"
-                return
+                return true
             }
         }
+//        main diagonal
         if(boardState[0][0]!=-1&&boardState[0][0]==boardState[1][1] && boardState[0][0]==boardState[2][2]) {
             val winner = if(boardState[0][0]==1) "X" else "O"
             displaytv.text = "Player $winner wins"
             textView2.text = "Now you can press reset button to start a new game"
-            return
+            return true
         }
+//        other diagonal
         if(boardState[0][2]!=-1&&boardState[0][2]==boardState[1][1] && boardState[0][2]==boardState[2][0]) {
             val winner = if(boardState[0][2]==1) "X" else "O"
             displaytv.text = "Player $winner wins"
             textView2.text = "Now you can press reset button to start a new game"
-            return
+            return true
         }
         if(count==9) {
             displaytv.text = "DRAW"
             textView2.text = "Now you can press reset button to start a new game"
-            return
+            return true
         }
+
+//        disableButton()
+        return false
     }
     override fun onClick(view: View) {
 
